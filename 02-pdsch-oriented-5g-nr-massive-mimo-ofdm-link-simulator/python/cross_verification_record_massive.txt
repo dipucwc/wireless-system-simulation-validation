@@ -1,0 +1,41 @@
+Cross-verification record
+MATLAB file:  results/matlab_results_massive.csv
+Python file:  results/python_results_massive.csv
+
+  -10 dB  ber              MATLAB      0.33875  Python     0.335456  dev   0.0042 decades  tol 0.3    PASS
+  -10 dB  nmse             MATLAB       1.3886  Python       1.3465  dev   0.0134 decades  tol 0.15   PASS
+  -10 dB  evmPercent       MATLAB       84.838  Python      84.1171  dev   0.0085 relative tol 0.1    PASS
+  -10 dB  capacityBpsHz    MATLAB       6.4335  Python      6.43397  dev   0.0001 relative tol 0.02   PASS
+  -10 dB  bler             MATLAB            1  Python            1  dev   0.0000 absolute tol 0.25   PASS
+   -5 dB  ber              MATLAB      0.19361  Python     0.193609  dev   0.0000 decades  tol 0.3    PASS
+   -5 dB  nmse             MATLAB      0.44021  Python     0.430533  dev   0.0097 decades  tol 0.15   PASS
+   -5 dB  evmPercent       MATLAB       55.337  Python      55.3241  dev   0.0002 relative tol 0.1    PASS
+   -5 dB  capacityBpsHz    MATLAB       11.606  Python      11.5319  dev   0.0064 relative tol 0.02   PASS
+   -5 dB  bler             MATLAB            1  Python            1  dev   0.0000 absolute tol 0.25   PASS
+    0 dB  ber              MATLAB     0.074628  Python    0.0717227  dev   0.0172 decades  tol 0.3    PASS
+    0 dB  nmse             MATLAB      0.14028  Python     0.133313  dev   0.0221 decades  tol 0.15   PASS
+    0 dB  evmPercent       MATLAB       33.402  Python       32.914  dev   0.0146 relative tol 0.1    PASS
+    0 dB  capacityBpsHz    MATLAB       17.644  Python      17.7538  dev   0.0062 relative tol 0.02   PASS
+    0 dB  bler             MATLAB            1  Python            1  dev   0.0000 absolute tol 0.25   PASS
+    5 dB  ber              MATLAB    0.0089192  Python   0.00844736  dev   0.0236 decades  tol 0.3    PASS
+    5 dB  nmse             MATLAB     0.044204  Python     0.042593  dev   0.0161 decades  tol 0.15   PASS
+    5 dB  evmPercent       MATLAB       19.338  Python      19.1504  dev   0.0097 relative tol 0.1    PASS
+    5 dB  capacityBpsHz    MATLAB       24.127  Python      24.1543  dev   0.0011 relative tol 0.02   PASS
+    5 dB  bler             MATLAB            1  Python            1  dev   0.0000 absolute tol 0.25   PASS
+   10 dB  ber              MATLAB   8.0848e-05  Python  4.34405e-05  dev   0.2698 decades  tol 0.3    PASS
+   10 dB  nmse             MATLAB     0.014092  Python    0.0136506  dev   0.0138 decades  tol 0.15   PASS
+   10 dB  evmPercent       MATLAB       11.003  Python      10.9374  dev   0.0060 relative tol 0.1    PASS
+   10 dB  capacityBpsHz    MATLAB       30.663  Python      30.6245  dev   0.0013 relative tol 0.02   PASS
+   10 dB  bler             MATLAB         0.85  Python     0.666667  dev   0.1833 absolute tol 0.25   PASS
+   15 dB  ber              MATLAB            0  Python            0  dev      nan decades  tol 0.3    PASS
+   15 dB  nmse             MATLAB    0.0043446  Python   0.00426657  dev   0.0079 decades  tol 0.15   PASS
+   15 dB  evmPercent       MATLAB       6.1461  Python      6.12489  dev   0.0035 relative tol 0.1    PASS
+   15 dB  capacityBpsHz    MATLAB        37.43  Python      37.3277  dev   0.0027 relative tol 0.02   PASS
+   15 dB  bler             MATLAB            0  Python            0  dev   0.0000 absolute tol 0.25   PASS
+   20 dB  ber              MATLAB            0  Python            0  dev      nan decades  tol 0.3    PASS
+   20 dB  nmse             MATLAB    0.0013992  Python   0.00133939  dev   0.0190 decades  tol 0.15   PASS
+   20 dB  evmPercent       MATLAB       3.4929  Python      3.43584  dev   0.0163 relative tol 0.1    PASS
+   20 dB  capacityBpsHz    MATLAB       43.989  Python      44.0237  dev   0.0008 relative tol 0.02   PASS
+   20 dB  bler             MATLAB            0  Python            0  dev   0.0000 absolute tol 0.25   PASS
+
+OVERALL: PASS - the Python and MATLAB implementations agree within the acceptance tolerances at every SNR point

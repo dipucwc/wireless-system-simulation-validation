@@ -1,0 +1,37 @@
+Configuration log for python_results_massive.csv
+Generated: 2026-07-14T02:58:21.128533+00:00
+
+python_version      3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]
+numpy_version       2.4.4
+scipy_version       1.17.1
+matplotlib_version  3.10.8
+platform            Linux-6.18.5-x86_64-with-glibc2.39
+architecture        x86_64
+git_commit          not available
+
+random_seed              7
+snr_db                   (-10, -5, 0, 5, 10, 15, 20)
+num_frames               60
+n_fft                    256
+n_sc                     144
+n_symbols                14
+scs_hz                   30000.0
+slot_duration_s          0.0005
+n_tx                     64
+n_rx                     8
+n_layers                 4
+precoder                 svd
+modulation               16QAM
+crc_poly                 8801531
+crc_len                  24
+n_id                     1
+rnti                     4660
+dmrs_symbols             (3, 10)
+dmrs_spacing             4
+channel_model            rayleigh_flat
+rician_k_db              8.0
+tdl_delays               (0, 2, 5, 9, 14)
+tdl_powers_db            (0.0, -2.2, -4.0, -6.0, -8.2)
+equalizer                mmse
+output_csv               /home/claude/python_pkg/results/python_results_massive.csv
+output_fig_dir           /home/claude/python_pkg/results/figures

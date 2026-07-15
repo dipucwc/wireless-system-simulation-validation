@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+results/tmp/
+.vscode/
+sim_profile.txt
+.pytest_cache/

@@ -1,0 +1,13 @@
+[project]
+name = "nr-pdsch-mimo-ofdm-simulator"
+version = "1.0.0"
+description = "Python reference implementation of a PDSCH-oriented 5G NR Massive MIMO-OFDM link-level simulator (uncoded CRC-protected chain, hard-decision QAM)"
+authors = [{ name = "Md Moklesur Rahman" }]
+requires-python = ">=3.11"
+dependencies = ["numpy", "scipy", "matplotlib"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
