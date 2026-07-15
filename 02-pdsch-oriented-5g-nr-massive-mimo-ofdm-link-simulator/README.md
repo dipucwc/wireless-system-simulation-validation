@@ -1,4 +1,4 @@
-
+## Design, Implementation, Verification, and Performance Evaluation of a PDSCH-Oriented 5G NR Massive MIMO-OFDM Physical Layer Link-Level Simulator
 # 5G NR PDSCH Massive MIMO-OFDM Link-Level Simulator
 
 A verified, three-environment (MATLAB / Python / Simulink) physical-layer link-level simulator for the 3GPP 5G NR PDSCH, built around a 64×8 massive MIMO-OFDM configuration with wideband SVD eigenbeamforming, LS channel estimation, ZF/MMSE equalization, and a TS 38.212 LDPC coded mode.
