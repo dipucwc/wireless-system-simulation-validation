@@ -307,7 +307,7 @@ LinkedIn: [md-moklesur-rahman](https://www.linkedin.com/in/md-moklesur-rahman-65
 
 ## License
 
-Code: MIT (see `LICENSE`). Report and figures: © Md Moklesur Rahman, all rights reserved — cite the report if you reference the results.
+Code: MIT (see `LICENSE`). Report and figures: © Md Moklesur Rahman, all rights reserved- cite the report if you reference the results.
 
 ---
 
