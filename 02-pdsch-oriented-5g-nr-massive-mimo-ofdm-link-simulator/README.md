@@ -24,17 +24,17 @@ Every curve and table in this repository comes from executed code: each campaign
 
 ## What is implemented
 
-**Transmitter** — CRC-24A transport block, Gold-sequence scrambling, QPSK/16/64/256-QAM mapping (TS 38.211 bit ordering), layer mapping, DM-RS insertion, wideband SVD eigenbeamforming precoder, CP-OFDM modulation (256-FFT, 30 kHz SCS, 12 RB verification numerology).
+**Transmitter**- CRC-24A transport block, Gold-sequence scrambling, QPSK/16/64/256-QAM mapping (TS 38.211 bit ordering), layer mapping, DM-RS insertion, wideband SVD eigenbeamforming precoder, CP-OFDM modulation (256-FFT, 30 kHz SCS, 12 RB verification numerology).
 
-**Channel** — AWGN, flat Rayleigh, 3GPP TDL profiles; one independent realization per Monte Carlo frame; total-transmit-SNR noise calibration.
+**Channel**- AWGN, flat Rayleigh, 3GPP TDL profiles; one independent realization per Monte Carlo frame; total-transmit-SNR noise calibration.
 
-**Receiver** — LS channel estimation on DM-RS, ZF and unbiased MMSE equalization, demapping, descrambling, CRC check; soft-output path with per-RE noise variance for LDPC LLRs.
+**Receiver**- LS channel estimation on DM-RS, ZF and unbiased MMSE equalization, demapping, descrambling, CRC check; soft-output path with per-RE noise variance for LDPC LLRs.
 
-**Coded mode** — 5G Toolbox `nrDLSCH` encoder/decoder (segmentation, LDPC, rate matching) with `nrSymbolModulate`/`nrSymbolDemodulate`, on the verified chain.
+**Coded mode**- 5G Toolbox `nrDLSCH` encoder/decoder (segmentation, LDPC, rate matching) with `nrSymbolModulate`/`nrSymbolDemodulate`, on the verified chain.
 
-**Metrics** — BER, BLER, EVM, NMSE, throughput, spectral efficiency, layer-domain capacity.
+**Metrics**- BER, BLER, EVM, NMSE, throughput, spectral efficiency, layer-domain capacity.
 
-**Simulink testbench** — `NR_PDSCH_LinkLevel_Sim.slx`: one Monte Carlo frame per simulation step; five annotated stages; every MATLAB Function block is a thin `sl_*` wrapper around the verified project functions; live Spectrum Analyzer and Constellation Diagram; To-Workspace logging; automated SNR-grid sweep with pass/fail verdicts against the MATLAB reference CSV.
+**Simulink testbench**- `NR_PDSCH_LinkLevel_Sim.slx`: one Monte Carlo frame per simulation step; five annotated stages; every MATLAB Function block is a thin `sl_*` wrapper around the verified project functions; live Spectrum Analyzer and Constellation Diagram; To-Workspace logging; automated SNR-grid sweep with pass/fail verdicts against the MATLAB reference CSV.
 
 ---
 
