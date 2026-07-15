@@ -1,10 +1,11 @@
+
 # 5G NR PDSCH Massive MIMO-OFDM Link-Level Simulator
 
 A verified, three-environment (MATLAB / Python / Simulink) physical-layer link-level simulator for the 3GPP 5G NR PDSCH, built around a 64×8 massive MIMO-OFDM configuration with wideband SVD eigenbeamforming, LS channel estimation, ZF/MMSE equalization, and a TS 38.212 LDPC coded mode.
 
-Every curve and table in this repository was produced by executing the code, passing automated verification gates, and saving the result with full file-level provenance. No illustrative or hand-drawn results are included.
+Every curve and table in this repository comes from executed code: each campaign runs automated verification gates first, and each result is saved to a file that records exactly which script, configuration, and seed produced it.
 
-**Full technical report (13 chapters, 73 pages):** [`Design_Implementation_Verification_and_Performance_Evaluation_of_a_PDSCH-Oriented_5G_NR_Massive_MIMO-OFDM_Physical_Layer_Link-Level_Simulator.docx`](./report/)
+**Full technical report:** [`Design_Implementation_Verification_and_Performance_Evaluation_of_a_PDSCH-Oriented_5G_NR_Massive_MIMO-OFDM_Physical_Layer_Link-Level_Simulator.docx`](./report/)
 
 ---
 
@@ -12,12 +13,12 @@ Every curve and table in this repository was produced by executing the code, pas
 
 | Result | Value | Where |
 |---|---|---|
-| Massive MIMO beamforming gain, SVD 64×8 vs unprecoded 4×4, equal total Tx power | **19.6 dB at BER 10⁻¹**; error-free above 5 dB (zero errors in 1.7×10⁶ bits/point) | `run_massive_mimo.m`, report §11.7 |
-| End-to-end 64×8 campaign (16-QAM, L = 4, flat Rayleigh, LS + MMSE) | BER 3.4×10⁻¹ → 1.1×10⁻⁴ over −10…10 dB; 55.248 Mbit/s and 12.789 bit/s/Hz from 15 dB | `main.m`, report §11.8 |
-| MATLAB ↔ Python cross-verification | **35 / 35 comparisons PASS** (5 metrics × 7 SNR points, statistical tolerances) | `cross_verification_record_massive.txt`, report §11.8 |
-| LDPC coded mode (TS 38.212, rates 0.3008 / 0.4785 / 0.7539) | Rate-ordered BLER waterfalls; exact throughput plateaus 8.960 / 14.336 / 22.544 Mbit/s | `run_ldpc_campaign*.m`, report §11.9 |
-| Simulink testbench sweep vs MATLAB reference | **7 / 7 SNR points PASS** (worst dev: 0.063 dec BER, 0.47 % capacity) | `sweep_snr_grid.m`, report §11.10 |
-| Waveform measurements (64 antennas × 60 frames @ 7.68 MHz) | 4.32 MHz occupied BW, ~28 dB OOB skirts; PAPR ≈ 9 dB @10 %, ≈ 10.3 dB @1 % | `plot_rf_measurements.m`, report §11.11 |
+| Massive MIMO beamforming gain, SVD 64×8 vs unprecoded 4×4, equal total Tx power | **19.6 dB at BER 10⁻¹**; error-free above 5 dB (zero errors in 1.7×10⁶ bits/point) | `run_massive_mimo.m`, report Section 11.7 |
+| End-to-end 64×8 campaign (16-QAM, L = 4, flat Rayleigh, LS + MMSE) | BER 3.4×10⁻¹ → 1.1×10⁻⁴ over −10…10 dB; 55.248 Mbit/s and 12.789 bit/s/Hz from 15 dB | `main.m`, report Section 11.8 |
+| MATLAB ↔ Python cross-verification | **35 / 35 comparisons PASS** (5 metrics × 7 SNR points, statistical tolerances) | `cross_verification_record_massive.txt`, report Section 11.8 |
+| LDPC coded mode (TS 38.212, rates 0.3008 / 0.4785 / 0.7539) | Rate-ordered BLER waterfalls; exact throughput plateaus 8.960 / 14.336 / 22.544 Mbit/s | `run_ldpc_campaign*.m`, report Section 11.9 |
+| Simulink testbench sweep vs MATLAB reference | **7 / 7 SNR points PASS** (worst dev: 0.063 dec BER, 0.47 % capacity) | `sweep_snr_grid.m`, report Section 11.10 |
+| Waveform measurements (64 antennas × 60 frames @ 7.68 MHz) | 4.32 MHz occupied BW, ~28 dB OOB skirts; PAPR ≈ 9 dB @10 %, ≈ 10.3 dB @1 % | `plot_rf_measurements.m`, report Section 11.11 |
 
 ---
 
@@ -72,7 +73,7 @@ The coded campaigns add gates L1–L3 (noiseless coded round trip + CRC, LLR sig
 │   └── NR_PDSCH_LinkLevel_Sim.slx
 ├── python_pkg/                  # independent reference implementation
 │   └── cross_verify_csv.py      # MATLAB↔Python comparison, tolerance verdicts
-├── 04_Simulation_Results/       # executed CSVs, config logs, figures (provenance)
+├── 04_Simulation_Results/       # executed CSVs, config logs, saved figures
 │   └── MATLAB/csv/matlab_results_massive.csv, ldpc_*.csv, ...
 ├── report/                      # the full technical report (docx/pdf)
 └── README.md
@@ -84,43 +85,6 @@ The coded campaigns add gates L1–L3 (noiseless coded round trip + CRC, LLR sig
 
 - MATLAB R2023b or later; **5G Toolbox** (coded mode only); **Simulink** + DSP System Toolbox scopes (testbench only). The uncoded MATLAB campaigns run on base MATLAB.
 - Python 3.10+ with NumPy and Matplotlib for the reference implementation.
-
-## Quick start
-
-```matlab
-cd matlab_pkg
-main                    % gates -> 64×8 campaign -> matlab_results_massive.csv + Figures
-run_comparisons         % theory checks, ZF/MMSE, capacity, beamforming gain
-run_ldpc_campaign       % coded BLER/throughput (requires 5G Toolbox)
-open NR_PDSCH_LinkLevel_Sim   % set SNR (dB) block, Stop Time 59, Run
-sweep_snr_grid          % full Simulink sweep + verdicts vs MATLAB reference
-```
-
-## Reproducibility & provenance
-
-Configuration is locked and logged (`matlab_results_massive_config.txt`), the seed is fixed, results are written to CSV before plotting, and every figure in the report regenerates from a stored file plus the source code. Two independent MATLAB runs and the Python implementation agree within Monte Carlo tolerances — the disagreement pattern itself (exact match on deterministic columns, spread only on random-error columns) is part of the verification evidence.
-
-## Scope
-
-Physical-layer link level only: no MAC scheduling, HARQ protocol timing, or higher-layer procedures; RF impairments (phase noise, IQ imbalance, PA nonlinearity) are deliberately outside the verified core and form the extension roadmap, starting from the measured PAPR.
-
-## Author
-
-**Md Moklesur Rahman** — Senior RF/PHY Engineer (5G NR PHY algorithms: beamforming & calibration, channel estimation, equalization, massive MIMO, OFDM)
-LinkedIn: [md-moklesur-rahman](https://www.linkedin.com/in/md-moklesur-rahman-65a63962) · GitHub: [dipucwc](https://github.com/dipucwc)
-
-## License
-
-Code: MIT (see `LICENSE`). Report and figures: © Md Moklesur Rahman, all rights reserved — cite the report if you reference the results.
-
-
-# PDSCH-Oriented 5G NR Massive MIMO-OFDM Link-Level Simulator
-
-**Design, Implementation, Verification, and Performance Evaluation of a PDSCH-Oriented 5G NR Massive MIMO-OFDM Physical Layer Link-Level Simulator**
-
-This technical report is a wireless physical-layer engineering portfolio project. It implements and documents a **PDSCH-oriented 5G NR Massive MIMO-OFDM link-level simulator** using MATLAB, Python, and a Simulink system-level architecture.
-
-The project focuses on the digital baseband PHY chain for downlink PDSCH-style transmission: transmitter processing, MIMO channel modeling, receiver processing, DM-RS-based channel estimation, ZF/MMSE equalization, metric computation, and verification.
 
 ---
 
@@ -161,66 +125,6 @@ Transport bits
 ```
 
 The project is intended for PHY algorithm understanding, link-level simulation practice, receiver-algorithm comparison, MIMO-OFDM performance evaluation, MATLAB/Python verification workflow, and GitHub engineering portfolio demonstration.
-
----
-
-## Repository Structure
-
-```text
-Project01_PDSCH_5G_NR_Massive_MIMO_OFDM_Link_Simulator/
-│
-├── README.md
-├── TECHNICAL_SCOPE.md
-├── REPOSITORY_STRUCTURE.md
-├── GITHUB_UPLOAD_STEPS.md
-├── LICENSE
-├── .gitignore
-│
-├── 01_Report/
-│   ├── Technical_Report.docx
-│   ├── Technical_Report.pdf
-│   └── figures/
-│
-├── 02_MATLAB/
-│   ├── main.m
-│   ├── config.m
-│   ├── transmitter/
-│   ├── receiver/
-│   ├── channel/
-│   ├── mimo/
-│   ├── estimation/
-│   ├── equalization/
-│   ├── metrics/
-│   └── visualization/
-│
-├── 03_Python/
-│   ├── main.py
-│   ├── config.py
-│   ├── transmitter/
-│   ├── receiver/
-│   ├── channel/
-│   ├── mimo/
-│   ├── estimation/
-│   ├── equalization/
-│   ├── metrics/
-│   └── visualization/
-│
-├── 04_Simulation_Results/
-│   ├── MATLAB/
-│   │   ├── csv/
-│   │   └── figures/
-│   └── Python/
-│       ├── csv/
-│       └── figures/
-│
-└── 05_Simulink/
-    ├── build_project01_simulink_model.m
-    ├── run_project01_simulink.m
-    ├── models/
-    ├── matlab_core/
-    ├── screenshots/
-    └── docs/
-```
 
 ---
 
@@ -377,12 +281,33 @@ mimo-ofdm
 ```
 
 ---
+## Quick start
+
+```matlab
+cd matlab_pkg
+main                    % gates -> 64×8 campaign -> matlab_results_massive.csv + Figures
+run_comparisons         % theory checks, ZF/MMSE, capacity, beamforming gain
+run_ldpc_campaign       % coded BLER/throughput (requires 5G Toolbox)
+open NR_PDSCH_LinkLevel_Sim   % set SNR (dB) block, Stop Time 59, Run
+sweep_snr_grid          % full Simulink sweep + verdicts vs MATLAB reference
+```
+
+## Reproducibility
+
+Configuration is locked and logged (`matlab_results_massive_config.txt`), the seed is fixed, results are written to CSV before plotting, and every figure in the report regenerates from a stored file plus the source code. Two independent MATLAB runs and the Python implementation agree within Monte Carlo tolerances — the disagreement pattern itself (exact match on deterministic columns, spread only on random-error columns) is part of the verification evidence.
+
+## Scope
+
+Physical-layer link level only: no MAC scheduling, HARQ protocol timing, or higher-layer procedures; RF impairments (phase noise, IQ imbalance, PA nonlinearity) are deliberately outside the verified core and form the extension roadmap, starting from the measured PAPR.
 
 ## Author
 
-**Md Moklesur Rahman**  
-Wireless/RF/PHY System Engineering Portfolio  
-GitHub: [dipucwc](https://github.com/dipucwc)
+**Md Moklesur Rahman** — Senior RF/PHY Engineer (5G NR PHY algorithms: beamforming & calibration, channel estimation, equalization, massive MIMO, OFDM)
+LinkedIn: [md-moklesur-rahman](https://www.linkedin.com/in/md-moklesur-rahman-65a63962) · GitHub: [dipucwc](https://github.com/dipucwc)
+
+## License
+
+Code: MIT (see `LICENSE`). Report and figures: © Md Moklesur Rahman, all rights reserved — cite the report if you reference the results.
 
 ---
 
