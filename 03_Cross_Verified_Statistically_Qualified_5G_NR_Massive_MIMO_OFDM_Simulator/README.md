@@ -739,42 +739,7 @@ The 19.6 dB result should therefore not be interpreted as a universal deployed-n
 - RF-aware analysis based on the measured PAPR distribution
 - Learning-based estimation and detection benchmarked against the verified LS, ZF, and MMSE baselines
 
----
-
-## Associated Manuscript
-
-The complete technical derivations, algorithms, verification protocol, confidence-interval methodology, executed results, complexity analysis, and references are provided in:
-
-[**Journal_Manuscript_v5_5G_NR_Massive_MIMO_Simulator.docx**](Report/Journal_Manuscript_v5_5G_NR_Massive_MIMO_Simulator.docx)
-
-Suggested manuscript title:
-
-> **Design, Cross-Verification, and Statistically Qualified Performance Evaluation of a PDSCH-Oriented 5G NR Massive MIMO-OFDM Physical-Layer Link-Level Simulator**
-
----
-
-## Citation
-
-Use the repository `CITATION.cff` file when available. A temporary citation format is:
-
-```text
-M. M. Rahman, “Design, Cross-Verification, and Statistically Qualified
-Performance Evaluation of a PDSCH-Oriented 5G NR Massive MIMO-OFDM
-Physical-Layer Link-Level Simulator,” technical manuscript and software
-repository, 2026.
-```
-
-BibTeX template:
-
-```bibtex
-@misc{rahman2026massivemimolinklevel,
-  author       = {Md Moklesur Rahman},
-  title        = {Design, Cross-Verification, and Statistically Qualified Performance Evaluation of a PDSCH-Oriented 5G NR Massive MIMO-OFDM Physical-Layer Link-Level Simulator},
-  year         = {2026},
-  howpublished = {Technical manuscript and software repository},
-  note         = {MATLAB, Python, and Simulink implementation}
-}
-```
+--
 
 ---
 
