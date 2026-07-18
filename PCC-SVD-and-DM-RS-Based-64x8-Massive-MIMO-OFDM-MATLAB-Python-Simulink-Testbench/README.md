@@ -580,43 +580,6 @@ Paper title:
 The manuscript contains the complete mathematical derivation, seven algorithms, implementation mapping, verification methodology, statistical procedure, simulation results, limitations, and references.
 
 ---
-
-## Citation
-
-Until a formal publication record is available, use the following manuscript citation:
-
-```bibtex
-@unpublished{rahman2026pccsvd,
-  author = {Md Moklesur Rahman},
-  title  = {Performance Analysis of Wideband SVD Precoding and DM-RS-Based Effective-Channel Estimation in 64 x 8 Massive MIMO-OFDM Systems},
-  note   = {Manuscript prepared for journal submission},
-  year   = {2026}
-}
-```
-
-Replace this entry with the publisher-provided citation and DOI after acceptance and publication.
-
----
-
-## Publication and Review Notice
-
-This repository supports a manuscript prepared for journal submission. The repository contents must not be described as peer-reviewed or published until the journal completes its review and formally accepts the work.
-
-For a double-blind review process, keep the repository private or use an anonymized review archive until the anonymity requirements of the target journal have ended.
-
----
-
-## License
-
-No open-source license is granted by default. Unless a separate `LICENSE` file is added, normal copyright restrictions apply.
-
-Before selecting an open-source license, confirm:
-
-- the target journal's software and data policy;
-- double-blind review requirements;
-- institutional or employer intellectual-property obligations;
-- whether third-party code, standards text, or datasets impose additional restrictions.
-
 ---
 
 ## Contact
