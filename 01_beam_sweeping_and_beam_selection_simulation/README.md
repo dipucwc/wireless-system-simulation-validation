@@ -113,24 +113,24 @@ The transmit-beam codebook is
 
 $$
 \mathcal{F}=
-\left\{
+\{
 \mathbf{f}_1,
 \mathbf{f}_2,
 \ldots,
 \mathbf{f}_{N_{\mathrm{TX}}}
-\right\},
+\},
 $$
 
 and the receive-beam codebook is
 
 $$
 \mathcal{W}=
-\left\{
+\{
 \mathbf{w}_1,
 \mathbf{w}_2,
 \ldots,
 \mathbf{w}_{N_{\mathrm{RX}}}
-\right\}.
+\}.
 $$
 
 Here:
@@ -245,16 +245,16 @@ Using the ideal beam-pair gain, the best beam pair is
 
 $$
 (i^\star,j^\star)=
-\operatorname*{arg\,max}_{1\leq i\leq N_{\mathrm{TX}},\;1\leq j\leq N_{\mathrm{RX}}}
-G_{i,j}.
+\underset{1\leq i\leq N_{\mathrm{TX}},\;1\leq j\leq N_{\mathrm{RX}}}{\arg\max}
+\;G_{i,j}.
 $$
 
 Using noisy measurements, the practical beam-selection rule is
 
 $$
 (\widehat{i},\widehat{j})=
-\operatorname*{arg\,max}_{1\leq i\leq N_{\mathrm{TX}},\;1\leq j\leq N_{\mathrm{RX}}}
-P_{i,j}.
+\underset{1\leq i\leq N_{\mathrm{TX}},\;1\leq j\leq N_{\mathrm{RX}}}{\arg\max}
+\;P_{i,j}.
 $$
 
 Here:
