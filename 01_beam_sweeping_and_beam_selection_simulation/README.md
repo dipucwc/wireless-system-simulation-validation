@@ -79,6 +79,7 @@ The initial model will use a uniform linear array. A uniform planar array may be
 For a uniform linear array with \(N\) antenna elements and inter-element spacing \(d\), the normalized steering vector is
 
 $$
+
 \mathbf{a}(\theta)=\frac{1}{\sqrt{N}}
 \begin{bmatrix}
 1 &
