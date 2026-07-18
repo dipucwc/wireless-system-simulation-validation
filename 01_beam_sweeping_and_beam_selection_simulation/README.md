@@ -45,41 +45,44 @@ The main objectives of this project are to:
 
 ## Technical Scope
 
-### Antenna-Array Modeling
+## Antenna-Array Modeling
 
-For a uniform linear array (ULA) with \(N\) antenna elements and inter-element spacing \(d\), the normalized steering vector is
+For a uniform linear array (ULA) with $N$ antenna elements and inter-element spacing $d$, the normalized steering vector is
 
 $$
 \mathbf{a}(\theta)
 =
 \frac{1}{\sqrt{N}}
 \begin{bmatrix}
-1 \\
-e^{j2\pi \frac{d}{\lambda}\sin(\theta)} \\
-\vdots \\
-e^{j2\pi (N-1)\frac{d}{\lambda}\sin(\theta)}
-\end{bmatrix}.
+1 &
+e^{j2\pi\frac{d}{\lambda}\sin(\theta)} &
+\cdots &
+e^{j2\pi(N-1)\frac{d}{\lambda}\sin(\theta)}
+\end{bmatrix}^{T}.
 $$
 
 Here:
 
-- \(N\) is the number of antenna elements;
-- \(d\) is the spacing between adjacent antenna elements;
-- \(\lambda\) is the carrier wavelength;
-- \(\theta\) is the propagation or beam-steering angle measured from the array broadside;
-- \(j=\sqrt{-1}\) is the imaginary unit.
+- $N$ is the number of antenna elements;
+- $d$ is the spacing between adjacent antenna elements;
+- $\lambda$ is the carrier wavelength;
+- $\theta$ is the propagation or beam-steering angle measured from the array broadside;
+- $j=\sqrt{-1}$ is the imaginary unit;
+- $(\cdot)^T$ denotes the transpose operation.
 
-The normalization factor \(1/\sqrt{N}\) ensures that
+The normalization factor $1/\sqrt{N}$ ensures that
 
 $$
-\left\|\mathbf{a}(\theta)\right\|_2^2 = 1.
+\left\|\mathbf{a}(\theta)\right\|_{2}^{2}
+=
+1.
 $$
 
-The sign of the phase progression may be reversed depending on the transmit/receive and angle conventions used in the implementation. MATLAB and Python will use the same convention.
+The sign of the phase progression may be reversed depending on the transmit, receive, and angle conventions used in the implementation. The MATLAB and Python implementations will use the same convention.
 
 ---
 
-### Beam Codebook
+## Beam Codebook
 
 The transmitter and receiver use finite beam codebooks defined as
 
@@ -87,8 +90,8 @@ $$
 \mathcal{F}
 =
 \left\{
-\mathbf{f}_1,
-\mathbf{f}_2,
+\mathbf{f}_{1},
+\mathbf{f}_{2},
 \ldots,
 \mathbf{f}_{N_{\mathrm{TX}}}
 \right\},
@@ -100,8 +103,8 @@ $$
 \mathcal{W}
 =
 \left\{
-\mathbf{w}_1,
-\mathbf{w}_2,
+\mathbf{w}_{1},
+\mathbf{w}_{2},
 \ldots,
 \mathbf{w}_{N_{\mathrm{RX}}}
 \right\}.
@@ -109,76 +112,76 @@ $$
 
 Here:
 
-- \(\mathbf{f}_i\) is the beamforming vector of the \(i\)-th transmit beam;
-- \(\mathbf{w}_j\) is the combining vector of the \(j\)-th receive beam;
-- \(N_{\mathrm{TX}}\) is the number of candidate transmit beams;
-- \(N_{\mathrm{RX}}\) is the number of candidate receive beams.
+- $\mathbf{f}_{i}$ is the beamforming vector of the $i$-th transmit beam;
+- $\mathbf{w}_{j}$ is the combining vector of the $j$-th receive beam;
+- $N_{\mathrm{TX}}$ is the number of candidate transmit beams;
+- $N_{\mathrm{RX}}$ is the number of candidate receive beams.
 
-For steering-vector-based codebooks, the beamforming and combining vectors can be defined as
+For steering-vector-based codebooks, the transmit beamforming vectors are defined as
 
 $$
-\mathbf{f}_i
+\mathbf{f}_{i}
 =
-\mathbf{a}_{\mathrm{TX}}(\theta_i),
+\mathbf{a}_{\mathrm{TX}}(\theta_{i}),
 \qquad
 i=1,2,\ldots,N_{\mathrm{TX}},
 $$
 
-and
+and the receive combining vectors are defined as
 
 $$
-\mathbf{w}_j
+\mathbf{w}_{j}
 =
-\mathbf{a}_{\mathrm{RX}}(\phi_j),
+\mathbf{a}_{\mathrm{RX}}(\phi_{j}),
 \qquad
-j=1,2,\ldots,N_{\mathrm{RX}},
+j=1,2,\ldots,N_{\mathrm{RX}}.
 $$
 
-where \(\theta_i\) and \(\phi_j\) are the candidate transmit and receive beam directions.
+Here, $\theta_i$ and $\phi_j$ are the candidate transmit and receive beam directions, respectively.
 
 The initial implementation will use uniformly spaced beam directions over a configurable angular search region. Additional codebook designs may be added later.
 
 ---
 
-### Directional Channel Model
+## Directional Channel Model
 
-For transmit beam \(i\) and receive beam \(j\), the received reference signal is modeled as
+For transmit beam $i$ and receive beam $j$, the received reference signal is modeled as
 
 $$
 y_{i,j}
 =
-\mathbf{w}_j^{H}
+\mathbf{w}_{j}^{H}
 \mathbf{H}
-\mathbf{f}_i s
+\mathbf{f}_{i}s
 +
-\mathbf{w}_j^{H}\mathbf{n},
+\mathbf{w}_{j}^{H}\mathbf{n}.
 $$
 
-where:
+Here:
 
-- \(y_{i,j}\) is the received signal for beam pair \((i,j)\);
-- \(\mathbf{H}\) is the MIMO channel matrix;
-- \(\mathbf{f}_i\) is the \(i\)-th transmit beamforming vector;
-- \(\mathbf{w}_j\) is the \(j\)-th receive combining vector;
-- \(s\) is the known transmitted reference symbol;
-- \(\mathbf{n}\) is the complex additive-noise vector;
-- \((\cdot)^H\) denotes the Hermitian transpose.
+- $y_{i,j}$ is the received signal for beam pair $(i,j)$;
+- $\mathbf{H}$ is the MIMO channel matrix;
+- $\mathbf{f}_{i}$ is the $i$-th transmit beamforming vector;
+- $\mathbf{w}_{j}$ is the $j$-th receive combining vector;
+- $s$ is the known transmitted reference symbol;
+- $\mathbf{n}$ is the complex additive-noise vector;
+- $(\cdot)^H$ denotes the Hermitian transpose.
 
-The scalar effective channel associated with beam pair \((i,j)\) is
+The scalar effective channel associated with beam pair $(i,j)$ is
 
 $$
 h_{\mathrm{eff}}(i,j)
 =
-\mathbf{w}_j^{H}
+\mathbf{w}_{j}^{H}
 \mathbf{H}
-\mathbf{f}_i.
+\mathbf{f}_{i}.
 $$
 
 The project will initially use a line-of-sight directional channel. Later versions may include multipath propagation, angular spread, path loss, shadowing, blockage, mobility, and beam misalignment.
 
 ---
 
-### Beam Measurement
+## Beam Measurement
 
 For every candidate transmit–receive beam pair, the receiver calculates a beam-quality metric. Possible metrics include:
 
@@ -193,65 +196,66 @@ $$
 G_{i,j}
 =
 \left|
-\mathbf{w}_j^{H}
+\mathbf{w}_{j}^{H}
 \mathbf{H}
-\mathbf{f}_i
-\right|^2.
+\mathbf{f}_{i}
+\right|^{2}.
 $$
 
-When the transmitted reference symbol has unit energy, a practical received-power measurement can be calculated as
+When the transmitted reference symbol has unit energy, the noisy received-power measurement can be calculated as
 
 $$
 P_{i,j}
 =
-\left|y_{i,j}\right|^2.
+\left|y_{i,j}\right|^{2}.
 $$
 
-The first metric isolates the channel and beamforming response, whereas the second includes the effects of measurement noise.
+The metric $G_{i,j}$ represents the ideal channel and beamforming response. The metric $P_{i,j}$ includes the effect of measurement noise.
 
 ---
 
-### Best-Beam Selection
+## Best-Beam Selection
 
 Using the ideal beam-pair gain, the selected transmit and receive beam indices are
 
 $$
 \left(i^{\star},j^{\star}\right)
 =
-\underset{
-\substack{
-1\leq i\leq N_{\mathrm{TX}}\\
+\operatorname*{arg\,max}_{\substack{
+1\leq i\leq N_{\mathrm{TX}} \\
 1\leq j\leq N_{\mathrm{RX}}
-}
-}{
-\operatorname{arg\,max}
-}
-\;
+}}
 G_{i,j}.
 $$
 
-For noisy beam measurements, the practical selection rule becomes
+Using noisy beam measurements, the practical beam-selection rule is
 
 $$
 \left(\widehat{i},\widehat{j}\right)
 =
-\underset{
-\substack{
-1\leq i\leq N_{\mathrm{TX}}\\
+\operatorname*{arg\,max}_{\substack{
+1\leq i\leq N_{\mathrm{TX}} \\
 1\leq j\leq N_{\mathrm{RX}}
-}
-}{
-\operatorname{arg\,max}
-}
-\;
+}}
 P_{i,j}.
 $$
 
-The simulation will compare the selected beam pair with the ideal beam pair and with the true channel departure and arrival directions. This comparison will be used to calculate the correct-beam-selection probability, angular selection error, and beam quantization loss.
+Here:
+
+- $(i^{\star},j^{\star})$ is the ideal best beam pair;
+- $(\widehat{i},\widehat{j})$ is the beam pair selected from noisy measurements.
+
+The simulation will compare the practically selected beam pair with the ideal beam pair and with the true channel departure and arrival directions. The comparison will be used to calculate:
+
+- correct-beam-selection probability;
+- angular selection error;
+- beam quantization loss;
+- received-power loss caused by an incorrect beam decision.
 
 ---
 
-### Planned End-to-End Workflow
+## Planned End-to-End Workflow
+---
 ---
 
 ## Planned End-to-End Workflow
