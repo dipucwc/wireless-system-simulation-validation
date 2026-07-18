@@ -58,7 +58,7 @@ The initial implementation will use configurable antenna arrays such as:
 
 For a ULA with \(N\) antenna elements and inter-element spacing \(d\), the steering vector may be represented as
 
-$$
+
 \mathbf{a}(\theta)
 =
 \frac{1}{\sqrt{N}}
@@ -68,7 +68,7 @@ e^{j2\pi \frac{d}{\lambda}\sin(\theta)} &
 \cdots &
 e^{j2\pi (N-1)\frac{d}{\lambda}\sin(\theta)}
 \end{bmatrix}^{T},
-$$
+
 
 where:
 
@@ -90,9 +90,9 @@ $$
 \ldots,
 \mathbf{f}_{N_{\mathrm{TX}}}
 \right\},
-$$
 
-$$
+
+
 \mathcal{W}
 =
 \left\{
@@ -101,7 +101,7 @@ $$
 \ldots,
 \mathbf{w}_{N_{\mathrm{RX}}}
 \right\}.
-$$
+
 
 Here, \(\mathbf{f}_{i}\) is the \(i\)-th transmit beamforming vector, \(\mathbf{w}_{j}\) is the \(j\)-th receive combining vector, and \(N_{\mathrm{TX}}\) and \(N_{\mathrm{RX}}\) are the numbers of candidate transmit and receive beams.
 
@@ -111,7 +111,7 @@ The initial codebook is planned to use uniformly spaced steering directions. Add
 
 For transmit beam \(i\) and receive beam \(j\), the received reference signal can be modeled as
 
-$$
+
 y_{i,j}
 =
 \mathbf{w}_{j}^{H}
@@ -119,7 +119,7 @@ y_{i,j}
 \mathbf{f}_{i}s
 +
 \mathbf{w}_{j}^{H}\mathbf{n},
-$$
+
 
 where \(\mathbf{H}\) is the MIMO channel matrix, \(s\) is the transmitted reference symbol, \(\mathbf{n}\) is complex additive noise, and \((\cdot)^H\) denotes the Hermitian transpose.
 
@@ -131,7 +131,7 @@ For every candidate beam pair, the receiver will calculate a quality metric such
 
 A simple beam-pair power metric is
 
-$$
+
 P_{i,j}
 =
 \left|
@@ -139,18 +139,18 @@ P_{i,j}
 \mathbf{H}
 \mathbf{f}_{i}
 \right|^{2}.
-$$
+
 
 ### Best-Beam Selection
 
 The selected transmit and receive beams are determined by
 
-$$
+
 (i^{\star},j^{\star})
 =
 \underset{i,j}{\operatorname{arg\,max}}
 \;P_{i,j}.
-$$
+
 
 The simulation will compare the selected beam direction with the true channel direction and determine whether the correct or nearest beam was selected.
 
