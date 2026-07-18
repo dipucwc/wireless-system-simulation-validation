@@ -1,5 +1,5 @@
 
-# PDSCH-Oriented 5G NR Massive MIMO-OFDM Link-Level Simulator
+# Design, Cross-Verification, and Statistically Qualified Performance Evaluation of a PDSCH-Oriented 5G NR Massive MIMO-OFDM Physical-Layer Link-Level and Simulink**
 
 **Design, cross-verification, and statistically qualified performance evaluation using MATLAB, Python, and Simulink**
 
